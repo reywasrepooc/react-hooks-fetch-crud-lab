@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+// import QuestionList from "./QuestionList";
+
 const QuestionAPI = "http://localhost:4000/questions"
 
-function QuestionForm(props) {
+function QuestionForm({setQuestions, questions}) {
   const [formData, setFormData] = useState({
     prompt: "",
     answer1: "",
@@ -35,7 +37,19 @@ function QuestionForm(props) {
         ],
         correctIndex: parseInt(formData.correctIndex),
       }),
-    });
+    })
+    .then(response => response.json())
+    .then(data => {
+      setQuestions([...questions, data])
+    })
+setFormData({
+  prompt: "",
+  answer1: "",
+  answer2: "",
+  answer3: "",
+  answer4: "",
+  correctIndex: 0,
+})
   }
 
   return (
