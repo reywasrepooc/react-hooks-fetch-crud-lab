@@ -18,20 +18,20 @@ function App() {
   }, [])
 
   const deleteQuestion = (id) => {
+    const configObject = { method: "DELETE" }
     
     const updatedQuestionsList = questions.filter(question => question.id !== id)
-    fetch(`${QuestionAPI}/${id}`, {
-      method: "DELETE"
-    })
+   
+    fetch(`http://localhost:4000/questions/${id}`, configObject)
     .then(setQuestions(updatedQuestionsList))
   }
 
   return (
     <main>
       <AdminNavBar onChangePage={setPage} />
-      {page === "Form" ? <QuestionForm setQuestions={setQuestions} questions={questions}/> : <QuestionList setQuestions={setQuestions} questions={questions} deleteQuestion={deleteQuestion} />}
-    </main>
-  );
+      {page === "Form" ? 
+      <QuestionForm setQuestions={setQuestions} questions={questions} /> : <QuestionList questions={questions} deleteQuestion={deleteQuestion} setQuestions={setQuestions} />} </main>
+  )
 }
 
 export default App;

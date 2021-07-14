@@ -2,35 +2,15 @@ import React from "react"
 import QuestionItem from "./QuestionItem"
 
 
-function QuestionList({questions, setQuestions, deleteQuestion}) {
-
-  // const QuestionAPI = "http://localhost:4000/questions"
-  
-
-  // const updateAnswer = (id, correctIndex) => {
-  //   fetch(`${QuestionAPI}/${id}`, {
-  //     method: "PATCH",
-  //     headers: {"Content-Type" : " application/json" },
-  //     body: JSON.stringify (correctIndex)
-  //   })
-   
-  //   .then((response) => response.json())
-  //   .then((deleteQuestId) => {
-  //     deleteQuestion = questions.map((q) => {
-  //     if (q.id === deleteQuestId)
-  //     return deleteQuestId
-  //     return q
-  //    }) 
-  //   setQuestions(deleteQuestion)
-  //   })
-  // }
+function QuestionList({ questions, deleteQuestion, setQuestions }) {
  
-  const quizItems = questions.map(q => (
+  const quizItems = questions.map(question => (
     <QuestionItem 
-    key={q.id}
-    question={q}
+    key={question.id}
+    questions={questions}
+    question={question}
     deleteQuestion={deleteQuestion}
-    // onAnswerChange={updateAnswer}
+    setQuestions={setQuestions}
     />
   ))
 

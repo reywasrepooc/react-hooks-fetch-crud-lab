@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 const QuestionAPI = "http://localhost:4000/questions"
 
-function QuestionForm({setQuestions, questions}) {
+function QuestionForm({ setQuestions, questions }) {
   const [formData, setFormData] = useState({
     prompt: "",
     answer1: "",
@@ -41,15 +41,15 @@ function QuestionForm({setQuestions, questions}) {
     .then(response => response.json())
     .then(data => {
       setQuestions([...questions, data])
+      setFormData({
+        prompt: "",
+        answer1: "",
+        answer2: "",
+        answer3: "",
+        answer4: "",
+        correctIndex: 0,
     })
-setFormData({
-  prompt: "",
-  answer1: "",
-  answer2: "",
-  answer3: "",
-  answer4: "",
-  correctIndex: 0,
-})
+  })
   }
 
   return (
